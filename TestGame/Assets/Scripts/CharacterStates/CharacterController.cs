@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    ///REFERENCE///
-
-    [HideInInspector]
-    public Rigidbody _rigidBody;
-
-    //Concrete Instances
-    public CharacterState _currentState;
-    public StateFactory states;
-
     ///PARAMETERS///
     //Movement
     [Header("Movement")]
@@ -39,9 +30,23 @@ public class CharacterController : MonoBehaviour
     public RaycastHit _hit;
     public RaycastHit _forwardHit;
     public LayerMask _groundMask;
+
+    ///REFERENCE///
+    [HideInInspector]
+    public Rigidbody _rigidBody;
+
+    //Concrete Instances
+    public CharacterState _currentState;
+    public StateFactory states;
     [Header("References")]
     public CapsuleCollider _col;
-    public ParticleSystem _dustParticles;
+    public Transform _playerCamControllerTransform;
+    [System.Serializable]
+    public struct Particles
+    {
+        public ParticleSystem _dustTrialParticles, _stompParticles;
+    }
+    public Particles _particles;
 
     private void Awake()
     {

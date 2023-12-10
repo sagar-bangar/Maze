@@ -13,7 +13,7 @@ public class CharacterMoveState : CharacterGroundedState
     public override void EnterState()
     {
         Debug.Log("Entered MoveState");
-        _character._dustParticles.Play();
+        _character._particles._dustTrialParticles.Play();
     }
 
     public override void Update()
@@ -68,8 +68,8 @@ public class CharacterMoveState : CharacterGroundedState
     public override void ExitState()
     {
         // Debug.Log("Exited MoveState");
-        _character._dustParticles.Clear();
-        _character._dustParticles.Stop();
+        _character._particles._dustTrialParticles.Clear();
+        _character._particles._dustTrialParticles.Stop();
     }
 
     private float charAcceleration;
@@ -83,6 +83,7 @@ public class CharacterMoveState : CharacterGroundedState
         Vector3 averageDirection = Vector3.zero;
         {
             targetDirection = (new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))).normalized;
+            targetDirection = targetDirection.z * _character._playerCamControllerTransform.forward + targetDirection.x * _character._playerCamControllerTransform.right;
             forwardTargetDirection = targetDirection;
             float desiredDirection = Vector3.Dot(_character.transform.up, _character._hit.normal);
             float angle = Mathf.Acos(desiredDirection) * Mathf.Rad2Deg;
@@ -106,7 +107,7 @@ public class CharacterMoveState : CharacterGroundedState
         Vector3 dispacement = initalVelocity + (10 * Time.deltaTime) * (finalVelocity - initalVelocity);
         //Vector3 speedDelta = Vector3.MoveTowards(_character._rigidBody.velocity, targetVelocity, 20 * Time.deltaTime); // 20 * 0.2 = 4
         charAcceleration = dispacement.magnitude;
-        Debug.Log("Velocity " + finalVelocity.magnitude);
+        //Debug.Log("Velocity " + finalVelocity.magnitude);
     }
 
     public void Move()
