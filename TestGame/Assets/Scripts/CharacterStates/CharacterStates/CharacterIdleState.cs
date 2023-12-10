@@ -46,17 +46,9 @@ public class CharacterIdleState : CharacterGroundedState
 
     private void SetIdle()
     {
+        // set velocity to zero
         if(!_character.IsMoving())
         {
-            /*Vector3 friction = new Vector3(_character._rigidBody.velocity.x, 0, _character._rigidBody.velocity.z).normalized;
-            Vector3 frictionAmount = Vector3.MoveTowards(friction, Vector3.zero, 0.1f * Time.deltaTime);
-            float amount = Mathf.Abs(frictionAmount.magnitude);
-            amount *= Mathf.Sign(frictionAmount.magnitude) * 0.3f;
-            _character._rigidBody.AddForce(friction * -amount, ForceMode.Impulse);
-            if (friction.magnitude < 1f)
-            {
-                _character._rigidBody.velocity = Vector3.zero;
-            }*/
             _character._rigidBody.velocity = Vector3.zero;
         }
     }

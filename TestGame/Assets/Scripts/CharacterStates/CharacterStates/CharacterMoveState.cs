@@ -83,9 +83,10 @@ public class CharacterMoveState : CharacterGroundedState
         Vector3 averageDirection = Vector3.zero;
         {
             targetDirection = (new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))).normalized;
-            targetDirection = targetDirection.z * _character._playerCamControllerTransform.forward + targetDirection.x * _character._playerCamControllerTransform.right;
+            targetDirection = (targetDirection.z * _character._playerCamControllerTransform.forward + targetDirection.x * _character._playerCamControllerTransform.right).normalized;
             forwardTargetDirection = targetDirection;
             float desiredDirection = Vector3.Dot(_character.transform.up, _character._hit.normal);
+            desiredDirection = Mathf.Clamp(desiredDirection, -1f, 1f);
             float angle = Mathf.Acos(desiredDirection) * Mathf.Rad2Deg;
             Vector3 rotAxis = Vector3.Cross(_character.transform.up, _character._hit.normal);
             Quaternion rot = Quaternion.AngleAxis(angle, rotAxis);
