@@ -15,16 +15,9 @@ public class PlayerCameraController  : MonoBehaviour
         Cursor.visible = false;
     }
 
+    //Smooth trasitioning the camera parent object to character position so that cmaera looks like its following with damp
     void LateUpdate()
     {
-        /*// Calculate the target position based on the player's position with the offset
-        Vector3 targetPosition = _playerTransform.position + offset;
-
-        //Smoothly interpolate between the current position and the target position
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-
-        transform.LookAt(_camOrientationTransform);*/
-
         float mouseX = Input.GetAxisRaw("Mouse X");
         transform.Rotate(Vector3.up * sensitivity * mouseX * Time.fixedDeltaTime);
         transform.position = Vector3.SmoothDamp(transform.position, _playerTransform.position, ref velocity, smoothTime);

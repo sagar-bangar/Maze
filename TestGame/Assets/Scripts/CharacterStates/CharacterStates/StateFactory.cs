@@ -7,6 +7,7 @@ public class StateFactory
     private CharacterState _jumpState;
     private CharacterState _groundedState;
 
+    //Creating instances for all states
     public StateFactory(CharacterController characterController)
     {
         _characterController = characterController;

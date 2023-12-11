@@ -20,6 +20,7 @@ public class KnockbackObstacle : MonoBehaviour
         }
     }
 
+    //Apply force to character
     void ApplyForceAtContactPoint(ContactPoint contactPoint, Rigidbody body)
     {
         if (body != null)

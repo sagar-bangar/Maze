@@ -75,6 +75,7 @@ public class CharacterController : MonoBehaviour
         SlopeCheck();
     }
 
+    //Sphere cast to check is colling with ground layer to se gounded condition
     public bool OnGround()
     {
         if (Physics.SphereCast(transform.position, _col.radius - 0.1f, -transform.up, out _sphereCastHit, _sphereCastDistance, _groundMask))
@@ -87,6 +88,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    //Ray cast to get slopes with respect to normal
     public bool OnSlope()
     {
         bool onSlope = false;
@@ -109,7 +111,7 @@ public class CharacterController : MonoBehaviour
         Physics.Raycast(transform.position + (transform.forward * forwardProbeDistance) + transform.GetComponent<CapsuleCollider>().center, Vector3.down, out _forwardHit, _rayCastDistance, _groundMask);
     }
 
-
+    //Based on input pressed setting moving condition
     public bool IsMoving()
     {
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
@@ -122,6 +124,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    //Setting default walk and run using button C
     private void DefaultMoveType()
     {
         if (Input.GetKeyDown(KeyCode.C))

@@ -29,6 +29,7 @@ public class WallsAndDoors : MonoBehaviour
         }
     }
 
+    //Of three set one door pushable and rest two intact
     private void SetKinematic(int index,bool isKinematic)
     {
         doors[index].door1.isKinematic = isKinematic;

@@ -27,6 +27,7 @@ public class RotatingPole : MonoBehaviour
         }
     }
 
+    //Applay slight force to character
     void ApplyForceAtContactPoint(ContactPoint contactPoint,Rigidbody body)
     {
         if (body != null)

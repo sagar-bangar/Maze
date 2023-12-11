@@ -59,6 +59,7 @@ public class CharacterMoveState : CharacterGroundedState
         Rotate();
         if (lastGrounded < 0.2f)
         {
+            //Setting velocity based on on gorund below
             Vector3 currentVelocity = _character._rigidBody.velocity;
             Vector3 ProjectedVeocity = Vector3.ProjectOnPlane(_character._rigidBody.velocity, (_character._hit.normal + _character._forwardHit.normal) * 0.5f);
             _character._rigidBody.velocity = Vector3.Lerp(currentVelocity,ProjectedVeocity, Time.deltaTime/0.02f);
@@ -73,6 +74,8 @@ public class CharacterMoveState : CharacterGroundedState
     }
 
     private float charAcceleration;
+    
+    //calculating move direction based on inputr and camera direction using normal getting angle and rotation targetDirection with achieved angle
     private void CalculateMoveDirection()
     {
 
@@ -100,6 +103,7 @@ public class CharacterMoveState : CharacterGroundedState
         _character._moveDir = (targetDirection);
     }
 
+    //calculating accelaration
     private void CalculateSpeed(float moveSpeed)
     {
         Vector3 targetVelocity = _character._moveDir * moveSpeed;
@@ -116,6 +120,7 @@ public class CharacterMoveState : CharacterGroundedState
         _character._rigidBody.velocity = _character._moveDir.normalized * charAcceleration;
     }
 
+    //Rotation in direction of move dorection
     public void Rotate()
     {
         if (_character._moveDir != Vector3.zero)
